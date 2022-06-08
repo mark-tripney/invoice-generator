@@ -107,6 +107,7 @@ body {
   display: flex;
   justify-content: space-between;
   padding-top: 11px;
+  margin-bottom: 63px;
 }
 
 .services-container {
@@ -155,4 +156,31 @@ body {
 
 .remove-service-btn:hover {
   text-decoration: underline;
+}
+
+.send-invoice-btn {
+  width: 100%;
+  background-color: #3a69d2;
+  color: #fff;
+  font-weight: 500;
+  line-height: 1.5;
+  padding-block: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.send-invoice-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.send-invoice-btn:disabled:hover {
+  box-shadow: none;
+}
+
+.send-invoice-envelope-icon {
+  width: 20px;
+  height: 20px;
 }

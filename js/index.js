@@ -6,6 +6,7 @@ const servicesContainer = document.getElementById("services-container");
 const summary = document.getElementById("summary");
 const notes = document.getElementById("notes");
 const total = document.getElementById("total");
+const sendInvoiceBtn = document.getElementById("send-invoice-btn");
 const servicesRequested = [];
 const services = {
   "Wash Car": 10,
@@ -29,6 +30,14 @@ const toggleNotesField = () => {
   }
 };
 
+const toggleInvoiceBtn = () => {
+  if (totalCost > 0) {
+    sendInvoiceBtn.disabled = false;
+  } else {
+    sendInvoiceBtn.disabled = true;
+  }
+};
+
 const removeService = (e, service) => {
   // Find the enclosing div of the just-clicked 'Remove' button...
   const parent = e.target.closest("div");
@@ -40,6 +49,7 @@ const removeService = (e, service) => {
   renderService();
   totalCost -= services[service];
   total.textContent = `$${totalCost}`;
+  toggleInvoiceBtn();
   toggleNotesField();
 };
 
@@ -76,6 +86,7 @@ const renderService = () => {
     serviceDiv.appendChild(serviceCost);
     servicesContainer.appendChild(serviceDiv);
   });
+  toggleInvoiceBtn();
   toggleNotesField();
 };
 
@@ -102,3 +113,12 @@ for (const service in services) {
   });
   buttonsContainer.appendChild(button);
 }
+
+sendInvoiceBtn.addEventListener("click", () => {
+  servicesRequested.length = 0;
+  renderService();
+  totalCost = 0;
+  total.textContent = `$${totalCost}`;
+  toggleInvoiceBtn();
+  toggleNotesField();
+});
