@@ -4,6 +4,7 @@ const pullWeedsBtn = document.getElementById("pull-weeds-btn");
 const buttonsContainer = document.getElementById("buttons-container");
 const servicesContainer = document.getElementById("services-container");
 const summary = document.getElementById("summary");
+const notes = document.getElementById("notes");
 const total = document.getElementById("total");
 const servicesRequested = [];
 const services = {
@@ -20,35 +21,55 @@ const setAttributes = (element, attributes) => {
   }
 };
 
-const removeService = (service) => {
-  console.log(`Remove ${service}`);
-  totalCost -= services[service];
-  total.textContent = `$${totalCost}`;
+const toggleNotesField = () => {
+  if (totalCost > 0) {
+    notes.textContent = "We accept cash, credit card, or PayPal";
+  } else {
+    notes.textContent = "";
+  }
 };
 
-const renderService = (service) => {
-  const serviceDiv = document.createElement("div");
-  const serviceName = document.createElement("p");
-  const removeBtn = document.createElement("button");
-  const serviceCost = document.createElement("p");
-  setAttributes(serviceDiv, {
-    id: "added-service",
-    class: "added-service",
+const removeService = (e, service) => {
+  // Find the enclosing div of the just-clicked 'Remove' button...
+  const parent = e.target.closest("div");
+  // ... and remove it from the DOM
+  parent.remove();
+  // Remove that service from the array...
+  servicesRequested.splice(servicesRequested.indexOf(service), 1);
+  // ... and re-render the list of chosen services `and updated cost
+  renderService();
+  totalCost -= services[service];
+  total.textContent = `$${totalCost}`;
+  toggleNotesField();
+};
+
+const renderService = () => {
+  servicesContainer.innerHTML = "";
+  servicesRequested.forEach((service) => {
+    const serviceDiv = document.createElement("div");
+    const serviceName = document.createElement("p");
+    const removeBtn = document.createElement("button");
+    const serviceCost = document.createElement("p");
+    setAttributes(serviceDiv, {
+      id: "added-service",
+      class: "added-service",
+    });
+    setAttributes(removeBtn, {
+      id: "remove-service-btn",
+      class: "remove-service-btn",
+    });
+    serviceName.textContent = service;
+    removeBtn.textContent = "Remove";
+    removeBtn.addEventListener("click", (e) => {
+      removeService(e, service);
+    });
+    serviceCost.textContent = `$${services[service]}`;
+    serviceDiv.appendChild(serviceName);
+    serviceDiv.appendChild(removeBtn);
+    serviceDiv.appendChild(serviceCost);
+    servicesContainer.appendChild(serviceDiv);
   });
-  setAttributes(removeBtn, {
-    id: "remove-service-btn",
-    class: "remove-service-btn",
-  });
-  serviceName.textContent = service;
-  removeBtn.textContent = "Remove";
-  removeBtn.addEventListener("click", () => {
-    removeService(service);
-  });
-  serviceCost.textContent = `$${services[service]}`;
-  serviceDiv.appendChild(serviceName);
-  serviceDiv.appendChild(removeBtn);
-  serviceDiv.appendChild(serviceCost);
-  servicesContainer.appendChild(serviceDiv);
+  toggleNotesField();
 };
 
 // Loop over services object and create a button for each service
@@ -61,11 +82,11 @@ for (const service in services) {
   });
   button.addEventListener("click", () => {
     // If service isn't in array, add it...
-    if (!servicesRequested.includes(service.toLowerCase())) {
-      servicesRequested.push(service.toLowerCase());
+    if (!servicesRequested.includes(service)) {
+      servicesRequested.push(service);
       totalCost += services[service];
       // ... display the chosen service...
-      renderService(service);
+      renderService();
       // ... and update total cost
       total.textContent = `$${totalCost}`;
     }
