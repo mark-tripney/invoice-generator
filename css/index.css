@@ -1,3 +1,59 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1c1c1c;
+  color: #f5f5f5;
+}
+
+/* Typography */
+
+.heading {
+  line-height: 1;
+  font-size: 2.5rem;
+  margin-bottom: 0.5625em;
+}
+
+.sub-heading {
+  line-height: 1.75;
+}
+
+.service-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.service-cost {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.total {
+  color: #f5f5f5;
+  font-size: 2.25rem;
+  font-weight: 600;
+  line-height: 1.125;
+}
+
+.notes {
+  font-size: 0.75rem;
+  line-height: 1.25;
+}
+
+/* Layout */
+
 .wrapper {
   width: 550px;
   border: 1px solid black;
@@ -5,21 +61,98 @@
 
 .main-header {
   text-align: center;
+  background-color: #3a69d2;
+  color: #fff;
+  padding: 59px 0 51px;
 }
 
 .main-wrapper {
-  padding: 10px;
+  padding: 41px 38px;
+  background-color: #1f2937;
 }
 
 .added-service {
   display: flex;
+  align-items: center;
+  margin-bottom: 24px;
 }
 
-.remove-service-btn {
-  margin-right: auto;
+.services-container > :last-child {
+  margin-bottom: 0;
+}
+
+.task-total {
+  margin-bottom: 19px;
+}
+
+.column-headings {
+  display: flex;
+  justify-content: space-between;
+}
+
+.column-heading {
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.66666667;
+  color: #d5d4d8;
+}
+
+#summary {
+  padding-top: 11px;
+  border-top: 1px solid #c3c6db;
+}
+
+.summary-content {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 11px;
+}
+
+.services-container {
+  padding-bottom: 29px;
+}
+
+/* Buttons */
+
+.btn {
+  font-family: inherit;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  box-shadow: 0 0 0 2px #fff;
+}
+
+.add-service-btn {
+  background-color: #d1d4f4;
+  color: #4a4e74;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.14285714;
+  padding: 15px 23px;
 }
 
 .buttons-container {
   display: flex;
+  flex-wrap: wrap;
+  row-gap: 0.5em;
   justify-content: space-between;
+  margin-bottom: 43px;
+}
+
+.remove-service-btn {
+  margin-right: auto;
+  border: none;
+  background-color: transparent;
+  color: #d5d4d8;
+  font-size: 0.5rem;
+  margin-left: 15px;
+  cursor: pointer;
+}
+
+.remove-service-btn:hover {
+  text-decoration: underline;
 }

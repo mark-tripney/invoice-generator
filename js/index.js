@@ -54,15 +54,22 @@ const renderService = () => {
       id: "added-service",
       class: "added-service",
     });
+    setAttributes(serviceName, {
+      class: "service-name",
+    });
     setAttributes(removeBtn, {
       id: "remove-service-btn",
       class: "remove-service-btn",
+    });
+    setAttributes(serviceCost, {
+      class: "service-cost",
     });
     serviceName.textContent = service;
     removeBtn.textContent = "Remove";
     removeBtn.addEventListener("click", (e) => {
       removeService(e, service);
     });
+    // TODO: Add div around serviceCost and add span to currency
     serviceCost.textContent = `$${services[service]}`;
     serviceDiv.appendChild(serviceName);
     serviceDiv.appendChild(removeBtn);
@@ -79,7 +86,9 @@ for (const service in services) {
   // Set attributes on just-created button element
   setAttributes(button, {
     id: `${service.toLowerCase().replace(" ", "-")}-btn`,
+    class: "add-service-btn btn",
   });
+  total.textContent = `$${totalCost}`;
   button.addEventListener("click", () => {
     // If service isn't in array, add it...
     if (!servicesRequested.includes(service)) {

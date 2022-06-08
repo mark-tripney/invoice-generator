@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="css/index.css" />
     <title>Invoice Generator</title>
   </head>
@@ -16,8 +22,16 @@
       <main>
         <div class="main-wrapper">
           <div id="buttons-container" class="buttons-container"></div>
+          <div class="column-headings task-total">
+            <p class="column-heading">Task</p>
+            <p class="column-heading">Total</p>
+          </div>
           <div id="services-container" class="services-container"></div>
-          <div id="summary" class="summary">
+          <div id="summary" class="column-headings">
+            <p class="column-heading">Notes</p>
+            <p class="column-heading">Total amount</p>
+          </div>
+          <div class="summary-content">
             <p id="notes" class="notes"></p>
             <p id="total" class="total"></p>
           </div>
