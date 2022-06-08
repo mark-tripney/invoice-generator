@@ -8,6 +8,28 @@
     <title>Invoice Generator</title>
   </head>
   <body>
+    <header>
+      <h1 class="heading">Invoice generator</h1>
+      <p class="sub-heading">Thanks for choosing GoodCorp, LLC!</p>
+    </header>
+    <main>
+      <div class="buttons-container">
+        <button id="wash-car-btn" class="add-service-btn btn">
+          Wash Car: $10
+        </button>
+        <button id="mow-lawn-btn" class="add-service-btn btn">
+          Mow Lawn: $20
+        </button>
+        <button id="pull-weeds-btn" class="add-service-btn btn">
+          Pull Weeds: $30
+        </button>
+      </div>
+      <div id="services-container" class="services-container"></div>
+      <div id="summary" class="summary">
+        <p id="notes" class="notes"></p>
+        <p id="total" class="total"></p>
+      </div>
+    </main>
     <script src="js/index.js"></script>
   </body>
 </html>
