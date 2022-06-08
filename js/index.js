@@ -59,7 +59,9 @@ const renderService = () => {
     const serviceDiv = document.createElement("div");
     const serviceName = document.createElement("p");
     const removeBtn = document.createElement("button");
-    const serviceCost = document.createElement("p");
+    const serviceCostDiv = document.createElement("div");
+    const currencySpan = document.createElement("span");
+    const serviceCost = document.createElement("span");
     setAttributes(serviceDiv, {
       id: "added-service",
       class: "added-service",
@@ -71,7 +73,10 @@ const renderService = () => {
       id: "remove-service-btn",
       class: "remove-service-btn",
     });
-    setAttributes(serviceCost, {
+    setAttributes(currencySpan, {
+      class: "currency",
+    });
+    setAttributes(serviceCostDiv, {
       class: "service-cost",
     });
     serviceName.textContent = service;
@@ -79,11 +84,13 @@ const renderService = () => {
     removeBtn.addEventListener("click", (e) => {
       removeService(e, service);
     });
-    // TODO: Add div around serviceCost and add span to currency
-    serviceCost.textContent = `$${services[service]}`;
+    currencySpan.textContent = "$";
+    serviceCost.textContent = `${services[service]}`;
+    serviceCostDiv.appendChild(currencySpan);
+    serviceCostDiv.appendChild(serviceCost);
     serviceDiv.appendChild(serviceName);
     serviceDiv.appendChild(removeBtn);
-    serviceDiv.appendChild(serviceCost);
+    serviceDiv.appendChild(serviceCostDiv);
     servicesContainer.appendChild(serviceDiv);
   });
   toggleInvoiceBtn();
