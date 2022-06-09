@@ -142,6 +142,15 @@ body {
   padding: 15px 23px;
 }
 
+.add-service-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.add-service-btn:disabled:hover {
+  box-shadow: none;
+}
+
 .buttons-container {
   display: flex;
   flex-direction: row;

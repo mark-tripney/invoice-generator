@@ -35,6 +35,11 @@ const toggleSummaryField = () => {
 const removeService = (e, service) => {
   // Find the enclosing div of the just-clicked 'Remove' button...
   const parent = e.target.closest("div");
+  // Get the id of the button relevant to the service...
+  const buttonId = `${service.toLowerCase().replace(" ", "-")}-btn`;
+  // ... and remove its disabled attribute
+  let removedServiceBtn = document.getElementById(buttonId);
+  removedServiceBtn.disabled = false;
   // ... and remove it from the DOM
   parent.remove();
   // Remove that service from the array...
@@ -123,6 +128,7 @@ for (const service in services) {
       renderService();
       // ... and update total cost
       total.textContent = `$${totalCost}`;
+      button.setAttribute("disabled", "");
     }
   });
   buttonsContainer.appendChild(button);
@@ -133,5 +139,10 @@ sendInvoiceBtn.addEventListener("click", () => {
   renderService();
   totalCost = 0;
   total.textContent = `$${totalCost}`;
+  // Remove disabled attribute on all service buttons
+  let serviceNodes = buttonsContainer.childNodes;
+  for (let i = 0; i < serviceNodes.length; i++) {
+    serviceNodes[i].disabled = false;
+  }
   toggleSummaryField();
 });
